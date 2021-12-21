@@ -25,19 +25,25 @@ model Club {
 }
 
 model Country {
-  id   String @id @default(cuid())
-  name String @db.VarChar(50)
-  code String @db.VarChar(10)
+  id        String   @id @default(cuid())
+  name      String   @unique @db.VarChar(50)
+  code      String   @unique @db.VarChar(10)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relation fields
   regions Region[]
 }
 
 model Region {
-  id   String @id @default(cuid())
-  name String @db.VarChar(50)
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(50)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relation fields
   country   Country @relation(fields: [countryId], references: [id])
   countryId String
+
+  @@unique([name, countryId])
 }
