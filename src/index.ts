@@ -1,22 +1,23 @@
 import express from 'express';
-import prisma from './client';
+import morgan from 'morgan';
+import countries from './routes/countries';
+import regions from './routes/regions';
+import { errorHandler } from './middleware/error';
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
-app.get('/', async (_, res) => {
-  await prisma.club.create({
-    data: {
-      author: 'test-author',
-      country: 'test-country',
-      division: 'test-division',
-      voivodeship: 'test-voivodeship',
-    },
-  });
+app.use(express.json());
 
-  const testQuery = await prisma.club.findMany();
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
-  res.send(testQuery);
-});
+app.use('/api/v2/countries', countries);
+app.use('/api/v2/regions', regions);
 
-app.listen(port, () => console.log(`Running on port ${port}`));
+app.use(errorHandler);
+
+app.listen(port, () =>
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`),
+);
