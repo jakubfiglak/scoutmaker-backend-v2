@@ -1,0 +1,31 @@
+@baseURL = http://localhost:7777/api/v2/countries
+@countryId = ckxg8i9zv0002xlrx15i5q72v
+
+### Create new country
+POST {{baseURL}}
+content-Type: application/json
+
+{
+  "name": "United States",
+  "code": "US"
+}
+
+### Update existing country
+PATCH {{baseURL}}/{{countryId}}
+content-Type: application/json
+
+{
+  "name": "poland"
+}
+
+### Delete existing country
+DELETE {{baseURL}}/{{countryId}}
+
+### Get single country by ID
+GET {{baseURL}}/{{countryId}}
+
+### Get all countries
+GET {{baseURL}}
+
+### Delete all countries
+DELETE {{baseURL}}
