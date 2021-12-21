@@ -1,0 +1,33 @@
+@baseURL = http://localhost:7777/api/v2/regions
+@polandId = ckxg8i9zv0002xlrx15i5q72v
+@usId = ckxg9b3ey0003i3rxwvxar6oa
+@regionId = ckxg96zim0006ewrxkq95jxgq
+
+### Create new region
+POST {{baseURL}}
+content-Type: application/json
+
+{
+  "name": "Wielkopolskie",
+  "countryId": "{{polandId}}"
+}
+
+### Update existing region
+PATCH {{baseURL}}/{{regionId}}
+content-type: application/json
+
+{
+  "countryId": "{{polandId}}"
+}
+
+### Delete existing region
+DELETE {{baseURL}}/{{regionId}}
+
+### Get single region by ID
+GET {{baseURL}}/{{regionId}}
+
+### Get all regions
+GET {{baseURL}}
+
+### Delete all regions
+DELETE {{baseURL}}

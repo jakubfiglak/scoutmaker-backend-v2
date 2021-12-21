@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb-base"],
+  "extends": ["airbnb-base", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -21,6 +21,8 @@
     "implicit-arrow-linebreak": "off",
     "function-paren-newline": "off",
     "import/prefer-default-export": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "consistent-return": "off",
+    "operator-linebreak": "off"
   }
 }
